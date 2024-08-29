@@ -106,7 +106,6 @@ button {
 .card_nations{
     width: 12rem;
     height: 21rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     perspective: 1000px;
     position: relative;
@@ -118,7 +117,6 @@ button {
 }
 
 .card_nations:hover{
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     transform: scale(1.05);
 }
 
