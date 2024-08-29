@@ -106,7 +106,6 @@ button {
 .card_nations{
     width: 12rem;
     height: 21rem;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
     perspective: 1000px;
     position: relative;
 }
