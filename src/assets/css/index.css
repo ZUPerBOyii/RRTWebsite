@@ -1,7 +1,12 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 body, html {
-    height: 100%;
+    width: 100%;
     margin: 0;
-    font-family:'Times New Roman', Times, serif
+    font-family: 'Roboto';
 }
 
 .background-image {
@@ -33,6 +38,7 @@ body, html {
     animation: fadeIn 2s forwards;
     position: relative;
     z-index: 0;
+    filter: blur(1.5px);
 }
 
 .buttons{
@@ -40,7 +46,9 @@ body, html {
     justify-content:space-around;
     align-items: center;
     flex-direction:row;
+    padding: 1rem;
 }
+
 
 @keyframes fadeIn {
     to {
@@ -68,7 +76,7 @@ h1 {
     font-size: 3rem;
 }
 
-p {
+main p {
     position: relative;
     z-index: 2;
     color: white;
@@ -81,9 +89,9 @@ button {
     position: relative;
     z-index: 2;
     margin-top: 5%;
-    background-color: #7F00FF;
+    background-color: rgba(0, 0, 0, 0);
     color: white;
-    padding: 1rem 1.25rem; 
+    padding: 0px; 
     border: none;
     cursor: pointer;
     border-radius: 0.3125rem; 
@@ -91,6 +99,23 @@ button {
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
     animation: jumpIn 0.5s ease forwards;
     opacity: 0; /* Start hidden */
+}
+
+.card_nations{
+    width: 12rem;
+    height: 21rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card_nations img{
+    width: 100%;
+    height: 100%;
+}
+
+.card_nations:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
 }
 
 button:nth-child(1) {
@@ -110,6 +135,62 @@ button:nth-child(4) {
 }
 
 button:hover {
-    background-color: #5A00B2; /* Darker shade of the original color */
+    /* background-color: #5A00B2; Darker shade of the original color */
     transform: scale(1.15);
+}
+
+/* footer css starts here */
+  
+footer{
+    width: 100%;
+    background-color: rgb(17, 17, 17);
+    color: white;
+    margin-top: 5rem;
+}
+
+.footer_container{
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.footer_logo{
+    width: 10%;
+}
+
+.footer_logo img{
+    width: 100%;
+    height: auto;
+}
+
+.footer_text_container{
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer_text{
+    width: 20%;
+    margin: 0px;
+}
+
+.footer_text p{
+    font-size: 16px;
+}
+
+.footer_text li{
+    font-size: 14px;
+    list-style-type: none;
+}
+
+.footer_bottom {
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: black;
+}
+
+.copyright_text{
+    font-size: 18px;
+    text-align: center;
 }
