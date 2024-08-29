@@ -116,7 +116,7 @@ button {
 }
 
 .card_nations:hover{
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .card_nations > div {
