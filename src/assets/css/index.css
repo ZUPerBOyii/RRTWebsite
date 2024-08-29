@@ -1,0 +1,115 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family:'Times New Roman', Times, serif
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    z-index: 1;
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    position: relative;
+    z-index: 0;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction:row;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes jumpIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h1 {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    margin-top: 20%;
+    font-size: 3rem;
+}
+
+p {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    margin-top: 5%;
+    font-size: 1.5rem; 
+}
+
+button {
+    position: relative;
+    z-index: 2;
+    margin-top: 5%;
+    background-color: #7F00FF;
+    color: white;
+    padding: 1rem 1.25rem; 
+    border: none;
+    cursor: pointer;
+    border-radius: 0.3125rem; 
+    font-size: 1rem; 
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    animation: jumpIn 0.5s ease forwards;
+    opacity: 0; /* Start hidden */
+}
+
+button:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+button:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+button:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+button:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+button:hover {
+    background-color: #5A00B2; /* Darker shade of the original color */
+    transform: scale(1.15);
+}
