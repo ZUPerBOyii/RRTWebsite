@@ -79,6 +79,11 @@ h1 {
     font-size: 3rem;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
+
 main p {
     position: relative;
     z-index: 2;
