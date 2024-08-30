@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #744D25; /* Set background color to black */
+    color: white; /* Set text color to white for better contrast */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2%;
+    font-size: 3rem;
+    color: #0E2512;
+}
+
+p {
+    margin: 2%;
+    font-size: 1.5rem;
+}
+
+.banner {
+    width: 20%; /* Adjust the width as needed */
+    float: right;
+    margin: 2%;
+    animation: fadeInFromRight 1s ease forwards; /* Apply fade-in from right animation */
+    opacity: 0; /* Start hidden */
+}
+
+@keyframes fadeInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+}
+
+.nav img {
+    width: 80%; /* Adjust the width as needed */
+    height: auto;
+    cursor: pointer;
+    border: 0.5rem solid #c36f11;
+    transition: transform 0.3s ease;
+}
+
+.nav img:hover {
+    transform: scale(1.1);
+}
