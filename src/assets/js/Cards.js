@@ -1,4 +1,5 @@
 let deck = [];
+let totalCardsInDeck = 0;
 let cardsData = [];
 let currentPage = 1;
 const cardsPerPage = 10;
@@ -85,15 +86,13 @@ function addToDeck(cardName, card) {
     } else {
         deck.push({ name: cardName, ...card, count: 1 });
     }
+    totalCardsInDeck++;
     updateDeckUI();
 }
 
 function updateDeckUI() {
     const deckCountElement = document.getElementById('deck-count');
-    deckCountElement.textContent = `${deck.length} cards`;
-
-    const downloadButton = document.getElementById('download-deck');
-    downloadButton.disabled = deck.length < 40 || deck.length > 50;
+    deckCountElement.textContent = `${totalCardsInDeck} cards`;
 
     const deckList = document.getElementById('deck-list');
     deckList.innerHTML = '';
