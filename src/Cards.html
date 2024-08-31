@@ -11,8 +11,24 @@
     <title>Cards</title>
 </head>
 <body>
-    <div id="cards-container">
-
+    <div id="filter-buttons">
+        <button id="filter-all">All</button>
+        <button id="filter-kingdom1">R'Oth Vilgmeri</button>
+        <button id="filter-kingdom2">Gilded Juval</button>
+        <button id="filter-kingdom3">High Valomor</button>
+        <button id="filter-kingdom4">Ervenia</button>
+        <button id="filter-kingdom5">Farlands</button>
+    </div>
+    <div id="cards-container"></div>
+    <div id="pagination-container"></div>
+    <div id="card-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-card-image" src="" alt="Card Image">
+            <h3 id="modal-card-title"></h3>
+            <p id="modal-card-rarity"></p>
+            <p id="modal-card-kingdom"></p>
+        </div>
     </div>
 </body>
 </html>
