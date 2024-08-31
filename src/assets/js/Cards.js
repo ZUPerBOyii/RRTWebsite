@@ -1,3 +1,4 @@
+let deck = [];
 let cardsData = [];
 let currentPage = 1;
 const cardsPerPage = 10;
@@ -41,6 +42,11 @@ function displayCards() {
             imgElement.src = card['Image Link'];
             cardElement.appendChild(imgElement);
 
+            const plusIcon = document.createElement('i');
+            plusIcon.className = 'fas fa-plus plus-icon';
+            plusIcon.addEventListener('click', () => addToDeck(cardName, card));
+            cardElement.appendChild(plusIcon);
+
             const contentElement = document.createElement('div');
             contentElement.className = 'card-content';
 
@@ -66,6 +72,48 @@ function displayCards() {
 
     lazyLoadImages();
     updatePaginationButtons(filteredCards.length);
+}
+
+function addToDeck(cardName, card) {
+    if (deck.length >= 50) {
+        alert('Deck cannot have more than 50 cards.');
+        return;
+    }
+    const existingCard = deck.find(item => item.name === cardName);
+    if (existingCard) {
+        existingCard.count++;
+    } else {
+        deck.push({ name: cardName, ...card, count: 1 });
+    }
+    updateDeckUI();
+}
+
+function updateDeckUI() {
+    const deckCountElement = document.getElementById('deck-count');
+    deckCountElement.textContent = `${deck.length} cards`;
+
+    const downloadButton = document.getElementById('download-deck');
+    downloadButton.disabled = deck.length < 40 || deck.length > 50;
+
+    const deckList = document.getElementById('deck-list');
+    deckList.innerHTML = '';
+    deck.forEach(card => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${card.name} (x${card.count})`;
+        deckList.appendChild(listItem);
+    });
+}
+
+function downloadDeck() {
+    const deckData = JSON.stringify(deck, null, 2);
+    const blob = new Blob([deckData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'deck.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
 
 function filterCardsData() {
@@ -169,6 +217,7 @@ function updatePaginationButtons(totalCards) {
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCardsData();
+    document.getElementById('download-deck').addEventListener('click', downloadDeck);
 
     // Add event listeners for filter buttons
     document.getElementById('filter-all').addEventListener('click', () => filterCards('All'));
@@ -177,4 +226,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filter-kingdom3').addEventListener('click', () => filterCards('High Valomor'));
     document.getElementById('filter-kingdom4').addEventListener('click', () => filterCards('Ervenia'));
     document.getElementById('filter-kingdom5').addEventListener('click', () => filterCards('Farlands'));
+
+    const deckButton = document.getElementById('deck-button');
+    const deckModal = document.getElementById('deck-modal');
+    const closeModal = document.querySelector('#deck-modal .close');
+
+    deckButton.addEventListener('click', () => {
+        deckModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+        deckModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === deckModal) {
+            deckModal.style.display = 'none';
+        }
+    });
 });

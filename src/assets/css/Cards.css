@@ -45,6 +45,7 @@ body {
 }
 
 .card {
+    position: relative;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -77,6 +78,91 @@ body {
     transform: scale(1.05);
     transition: transform 0.3s;
     cursor: pointer;
+}
+
+.plus-icon {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    cursor: pointer;
+    font-size: 1.5rem;;
+    color: rgb(255, 0, 0);
+}
+
+#deck-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+}
+
+#deck-container h2 {
+    margin: 0;
+}
+
+#deck-container p {
+    margin: 5px 0;
+}
+
+/* Add these styles to your existing Cards.css */
+
+#deck-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#deck-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#deck-modal .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+#deck-modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#deck-modal .close:hover,
+#deck-modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#deck-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#deck-list li {
+    margin: 10px 0;
 }
 
 
