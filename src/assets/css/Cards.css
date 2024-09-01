@@ -105,7 +105,21 @@ body {
     margin: 5px 0;
 }
 
-/* Add these styles to your existing Cards.css */
+#back{
+    background-color: #b01717; 
+    border: none; 
+    color: white; 
+    padding: 15px 32px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 12px; 
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
 
 #deck-button {
     position: fixed;
