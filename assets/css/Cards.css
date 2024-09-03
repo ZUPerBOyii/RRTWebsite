@@ -1,3 +1,7 @@
+*{
+    font-family: "Eagle Lake", serif;
+}
+
 body {
     font-family: "Eagle Lake", serif;
     font-weight: 400;
@@ -5,14 +9,17 @@ body {
     margin: 0;
     padding: 20px;
     background-image: url('../img/The-Drunken-Sails.png');
-    background-size:contain;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: center;
     height: 100vh;
 }
 
+
 #cards-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
 }
