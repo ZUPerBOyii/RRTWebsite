@@ -186,7 +186,7 @@ nav a:hover::after {
 .buttons{
     width: 100%;
     padding: 1rem;
-    background-image: url(/assets/img/old\ map\ background.png);
+    background-image: url("/assets/img/old map background.png");
     /* shit is a bit wonky for now but it looks 
     ok gonna change the style and image later */
 }
