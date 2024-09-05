@@ -214,9 +214,10 @@ function updatePaginationButtons(totalCards) {
     }
 }
 
-function backToMainPage() {
-    window.location.href = 'index.html';
+function backToPreviousPage() {
+    window.history.back();
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCardsData();
@@ -229,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filter-kingdom3').addEventListener('click', () => filterCards('High Valomor'));
     document.getElementById('filter-kingdom4').addEventListener('click', () => filterCards('Ervenia'));
     document.getElementById('filter-kingdom5').addEventListener('click', () => filterCards('Farlands'));
-    document.getElementById('back').addEventListener('click', backToMainPage);
+    document.getElementById('back').addEventListener('click', backToPreviousPage);
 
     const deckButton = document.getElementById('deck-button');
     const deckModal = document.getElementById('deck-modal');

@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-    document.querySelector('#back').addEventListener('click', backToMainPage);
+    document.querySelector('#back').addEventListener('click', backToPreviousPage);
     document.querySelector('.Isgard').addEventListener('click', toIsgard);
     document.querySelector('.Lowval').addEventListener('click', toLowval);
     document.querySelector('.Vanguards').addEventListener('click', toVanguards);
     document.querySelector('.Almari').addEventListener('click', toAlmari);
 }
 
-function backToMainPage() {
-    window.location.href = 'index.html';
+function backToPreviousPage() {
+    window.history.back();
 }
 
 function toIsgard() {

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-    document.querySelector('#back').addEventListener('click', backToMainPage);
+    document.querySelector('#back').addEventListener('click', backToPreviousPage);
     document.querySelector('.Mountains').addEventListener('click', toMountains);
     document.querySelector('.Grace').addEventListener('click', toGrace);
     document.querySelector('.Dead').addEventListener('click', toDead);
@@ -12,8 +12,8 @@ function init() {
     document.querySelector('.FarLost').addEventListener('click', toFarLost);
 }
 
-function backToMainPage() {
-    window.location.href = 'index.html';
+function backToPreviousPage() {
+    window.history.back();
 }
 
 function toMountains() {

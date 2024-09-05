@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-    document.querySelector('#back').addEventListener('click', backToMainPage);
+    document.querySelector('#back').addEventListener('click', backToPreviousPage);
     document.querySelector('.JuaLaVa').addEventListener('click', toJuaLaVa);
     document.querySelector('.JuaSai').addEventListener('click', toJuaSai);
     document.querySelector('.City').addEventListener('click', toCity);
@@ -9,9 +9,10 @@ function init() {
     document.querySelector('.Ramsen').addEventListener('click', toRamsen);
 }
 
-function backToMainPage() {
-    window.location.href = 'index.html';
+function backToPreviousPage() {
+    window.history.back();
 }
+
 
 function toJuaLaVa() {
     window.location.href = "sub-Juval/Jua La Va.html";
