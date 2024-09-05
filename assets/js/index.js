@@ -34,5 +34,5 @@ window.addEventListener('load', function() {
         loader.addEventListener('transitionend', function() {
             loader.style.display = 'none';
         });
-    }, 2000); // 2000 milliseconds = 2 seconds
+    }, 1200); // 2000 milliseconds = 2 seconds
 });
