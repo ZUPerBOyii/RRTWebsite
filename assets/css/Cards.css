@@ -97,13 +97,8 @@ body {
 }
 
 #deck-container {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: white;
-    border-radius: 8px;
+    display: none;
 }
-
 #deck-container h2 {
     margin: 0;
 }
@@ -154,13 +149,11 @@ body {
 }
 
 #deck-modal .modal-content {
-    background-color: white;
+    background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
 }
 
 #deck-modal .close {
@@ -178,12 +171,61 @@ body {
 }
 
 #deck-list {
-    list-style-type: none;
-    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 #deck-list li {
     margin: 10px 0;
+}
+
+.deck-card-image {
+    width: 3rem; /* Adjust the size as needed */
+    height: auto;
+}
+
+.deck-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px; /* Adjust the size as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Drawn card styles */
+.drawn-card-image {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+}
+
+/* Style for the drawn card container */
+.drawn-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px; /* Adjust the size as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+#draw-button {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 
