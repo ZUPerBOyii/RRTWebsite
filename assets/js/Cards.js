@@ -4,6 +4,7 @@ let currentPage = 1;
 const cardsPerPage = 10;
 let currentFilter = 'All';
 let userDeck = {};
+let isTempDeckInitialized = false;
 
 async function fetchCardsData() {
     try {
@@ -18,28 +19,39 @@ async function fetchCardsData() {
     }
 }
 
+function initializeTempDeck() {
+    // Initialize the tempDeck with the full deck or filtered deck
+    tempDeck = Object.entries(userDeck);
+    shuffleDeck(tempDeck);
+}
+
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+}
+
+
 function drawRandomCardFromDeck() {
-    if (tempDeck.length === 0) {
-        tempDeck = Object.entries(userDeck).flatMap(([cardName, card]) => 
-            Array(card.quantity).fill({ cardName, card })
-        );
-        console.log('Temp deck initialized:', tempDeck);
+    if (!isTempDeckInitialized) {
+        initializeTempDeck();
+        isTempDeckInitialized = true;
     }
 
     if (tempDeck.length === 0) {
-        alert('No cards available to draw.');
+        console.log('No more cards in the deck');
+        displayNoMoreCardsMessage();
         return;
     }
 
     const randomIndex = Math.floor(Math.random() * tempDeck.length);
-    const { cardName, card } = tempDeck[randomIndex];
-    tempDeck.splice(randomIndex, 1); // Remove the drawn card from tempDeck
+    const [cardName, card] = tempDeck.splice(randomIndex, 1)[0]; // Remove the drawn card from the deck
 
     displayDrawnCard(cardName, card);
 }
 
 function displayDrawnCard(cardName, card) {
-    console.log('Displaying card:', cardName, card);
 
     const drawContainer = document.getElementById('draw-container');
     if (!drawContainer) {
@@ -69,13 +81,48 @@ function displayDrawnCard(cardName, card) {
 
     drawContainer.appendChild(cardElement);
 
-    // Add Next Card button
-    const nextCardButton = document.createElement('button');
-    nextCardButton.textContent = 'Next Card';
-    nextCardButton.onclick = drawRandomCardFromDeck;
-    drawContainer.appendChild(nextCardButton);
+    // Add Next Card button if there are more cards in the deck
+    if (tempDeck.length > 0) {
+        const nextCardButton = document.createElement('button');
+        nextCardButton.textContent = 'Next Card';
+        nextCardButton.onclick = drawRandomCardFromDeck;
+        drawContainer.appendChild(nextCardButton);
+    } else {
+        const noMoreCardsMessage = document.createElement('p');
+        noMoreCardsMessage.textContent = 'No more cards in the deck';
+        drawContainer.appendChild(noMoreCardsMessage);
 
-    console.log('Card displayed:', drawContainer.innerHTML);
+        const redrawButton = document.createElement('button');
+        redrawButton.textContent = 'Redraw';
+        redrawButton.onclick = () => {
+            initializeTempDeck();
+            drawRandomCardFromDeck();
+        };
+        drawContainer.appendChild(redrawButton);
+    }
+}
+
+
+function displayNoMoreCardsMessage() {
+    const drawContainer = document.getElementById('draw-container');
+    if (!drawContainer) {
+        console.error('draw-container element not found');
+        return;
+    }
+
+    drawContainer.innerHTML = ''; // Clear previous card
+
+    const noMoreCardsMessage = document.createElement('p');
+    noMoreCardsMessage.textContent = 'No more cards in the deck';
+    drawContainer.appendChild(noMoreCardsMessage);
+
+    const redrawButton = document.createElement('button');
+    redrawButton.textContent = 'Redraw';
+    redrawButton.onclick = () => {
+        initializeTempDeck();
+        drawRandomCardFromDeck();
+    };
+    drawContainer.appendChild(redrawButton);
 }
 
 function displayCards() {
@@ -194,12 +241,12 @@ function showModal(imageSrc, cardName, rarity, kingdom) {
 
     // Close the modal when the user clicks on <span> (x)
     const span = document.getElementsByClassName('close')[0];
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = 'none';
     };
 
     // Close the modal when the user clicks anywhere outside of the modal
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
@@ -319,4 +366,5 @@ document.addEventListener('DOMContentLoaded', () => {
             deckModal.style.display = 'none';
         }
     });
+    initializeTempDeck();
 });

@@ -228,6 +228,15 @@ body {
     cursor: pointer;
 }
 
+#draw-container {
+    margin-top: 100px; /* Adjust as needed to ensure visibility */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: block; /* Ensure the container is displayed */
+}
+
 
 
 /* Modal styles */
