@@ -112,7 +112,15 @@ function displayDrawnCard(cardName, card) {
         };
         drawContainer.appendChild(redrawButton);
     }
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Restart';
+    restartButton.addEventListener('click', () => {
+        initializeTempDeck();
+        drawRandomCardFromDeck();
+    });
+    drawContainer.appendChild(restartButton);
 }
+
 
 
 function displayNoMoreCardsMessage() {
@@ -135,6 +143,15 @@ function displayNoMoreCardsMessage() {
         drawRandomCardFromDeck();
     };
     drawContainer.appendChild(redrawButton);
+
+    // Add Restart button to shuffle and draw again
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Restart';
+    restartButton.addEventListener('click', () => {
+        initializeTempDeck();
+        drawRandomCardFromDeck();
+    });
+    drawContainer.appendChild(restartButton);
 }
 
 function displayCards() {
