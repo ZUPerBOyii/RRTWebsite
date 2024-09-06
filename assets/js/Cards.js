@@ -21,7 +21,12 @@ async function fetchCardsData() {
 
 function initializeTempDeck() {
     // Initialize the tempDeck with the full deck or filtered deck
-    tempDeck = Object.entries(userDeck);
+    tempDeck = [];
+    for (const [cardName, cardData] of Object.entries(userDeck)) {
+        for (let i = 0; i < cardData.quantity; i++) {
+            tempDeck.push({ name: cardName, ...cardData });
+        }
+    }
     shuffleDeck(tempDeck);
 }
 
@@ -46,9 +51,16 @@ function drawRandomCardFromDeck() {
     }
 
     const randomIndex = Math.floor(Math.random() * tempDeck.length);
-    const [cardName, card] = tempDeck.splice(randomIndex, 1)[0]; // Remove the drawn card from the deck
+    const drawnCard = tempDeck[randomIndex];
 
-    displayDrawnCard(cardName, card);
+    // Reduce the quantity of the drawn card by 1
+    if (drawnCard.quantity > 1) {
+        drawnCard.quantity--;
+    } else {
+        tempDeck.splice(randomIndex, 1); // Remove the card if quantity is 1
+    }
+
+    displayDrawnCard(drawnCard.name, drawnCard);
 }
 
 function displayDrawnCard(cardName, card) {
