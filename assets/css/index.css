@@ -45,14 +45,6 @@ body, html {
     filter: blur(1.5px);
 }
 
-.buttons{
-    display:flex;
-    justify-content:space-around;
-    align-items: center;
-    flex-direction:row;
-    padding: 1rem;
-}
-
 
 @keyframes fadeIn {
     to {
@@ -76,34 +68,14 @@ h1 {
     z-index: 2;
     color: white;
     text-align: center;
-    margin-top: 20%;
     font-size: 3rem;
+    margin-top: 10%;
 }
 
 a{
     text-decoration: none;
     color: white;
 }
-
-
-/* article with the welcome text */
-.article{
-    width: 100%;
-}
-.welcome_text{
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-}
-.welcome_text p{
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    margin-top: 5%;
-    font-size: 1.5rem;
-}
-
 
 /* navigation starts here */
 main {
@@ -113,17 +85,18 @@ main {
 
 nav{
     margin: 0 auto;
-    width: 80%;
+    padding: 1rem;
+    width: 95%;
     height: 8rem;
     display: flex;
     justify-content: space-between;
 }
 
 nav ul{
-    width: 90%;
+    width: 40%;
     height: 5rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -160,6 +133,74 @@ nav a:hover::after {
     width: 100%; /* Expand underline on hover */
 }
 
+/* article with the welcome text */
+
+.article{
+    width: 100%;
+}
+.welcome_text{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10rem;
+}
+.welcome_text p{
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+}
+
+/* page loader code is here */
+
+.page_loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: #fff;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Add transition for smooth effect */
+}
+
+.page_loader img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.page_loader.slide-up {
+    transform: translateY(-100%); /* Slide the loader upwards */
+    opacity: 0; /* Fade out the loader */
+}
+
+
+/* code for the flip cards here */
+
+.buttons{
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-image: url("../img/old map background.png");
+    /* shit is a bit wonky for now but it looks 
+    ok gonna change the style and image later */
+}
+.buttons_container{
+    width: 60%;
+    margin: 0 auto;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction:row;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
 
 button {
     position: relative;
@@ -251,7 +292,6 @@ footer{
     width: 100%;
     background-color: rgb(17, 17, 17);
     color: white;
-    margin-top: 5rem;
     font-family: 'Roboto';
 }
 
@@ -273,6 +313,7 @@ footer{
 
 .footer_text_container{
     width: 90%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-evenly;
 }

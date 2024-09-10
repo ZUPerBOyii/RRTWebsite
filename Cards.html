@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="icon" href="assets/img/The_Drunken_Sails_Logo_NOBG.png" type="image/x-icon">
     <title>Cards</title>
 </head>
+
 <body>
     <div id="filter-buttons">
         <button id="filter-all">All</button>
@@ -21,19 +23,23 @@
         <button id="filter-kingdom4">Ervenia</button>
         <button id="filter-kingdom5">Farlands</button>
     </div>
+
     <button id="back">Back</button>
-    <div id="cards-container">
-    </div>
+
+    <div id="deck-container"></div>
+    <div id="cards-container"></div>
     <button id="deck-button">View Deck</button>
+    <button id="draw-button">Draw</button>
+    <div id="draw-container"></div>
     <div id="deck-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Your Deck</h2>
             <p id="deck-count">0 cards</p>
             <ul id="deck-list"></ul>
-            <button id="download-deck">Download Deck</button>
         </div>
     </div>
+
     <div id="pagination-container"></div>
     <div id="card-modal" class="modal">
         <div class="modal-content">
@@ -45,4 +51,5 @@
         </div>
     </div>
 </body>
+
 </html>

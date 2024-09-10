@@ -1,9 +1,10 @@
-let deck = [];
-let totalCardsInDeck = 0;
 let cardsData = [];
+let tempDeck = [];
 let currentPage = 1;
 const cardsPerPage = 10;
 let currentFilter = 'All';
+let userDeck = {};
+let isTempDeckInitialized = false;
 
 async function fetchCardsData() {
     try {
@@ -16,6 +17,141 @@ async function fetchCardsData() {
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
+}
+
+function initializeTempDeck() {
+    // Initialize the tempDeck with the full deck or filtered deck
+    tempDeck = [];
+    for (const [cardName, cardData] of Object.entries(userDeck)) {
+        for (let i = 0; i < cardData.quantity; i++) {
+            tempDeck.push({ name: cardName, ...cardData });
+        }
+    }
+    shuffleDeck(tempDeck);
+}
+
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+}
+
+
+function drawRandomCardFromDeck() {
+    if (!isTempDeckInitialized) {
+        initializeTempDeck();
+        isTempDeckInitialized = true;
+    }
+
+    if (tempDeck.length === 0) {
+        console.log('No more cards in the deck');
+        displayNoMoreCardsMessage();
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * tempDeck.length);
+    const drawnCard = tempDeck[randomIndex];
+
+    // Reduce the quantity of the drawn card by 1
+    if (drawnCard.quantity > 1) {
+        drawnCard.quantity--;
+    } else {
+        tempDeck.splice(randomIndex, 1); // Remove the card if quantity is 1
+    }
+
+    displayDrawnCard(drawnCard.name, drawnCard);
+}
+
+function displayDrawnCard(cardName, card) {
+
+    const drawContainer = document.getElementById('draw-container');
+    if (!drawContainer) {
+        console.error('draw-container element not found');
+        return;
+    }
+
+    drawContainer.innerHTML = ''; // Clear previous card
+
+    const cardElement = document.createElement('div');
+    cardElement.className = 'drawn-card';
+
+    const imgElement = document.createElement('img');
+    imgElement.src = card.imageSrc;
+    imgElement.className = 'drawn-card-image'; // Add class for styling
+    cardElement.appendChild(imgElement);
+
+    const titleElement = document.createElement('h3');
+    titleElement.className = 'drawn-card-title';
+    titleElement.textContent = cardName;
+    cardElement.appendChild(titleElement);
+
+    const quantityElement = document.createElement('p');
+    quantityElement.className = 'drawn-card-quantity';
+    quantityElement.textContent = `Quantity: ${card.quantity}`;
+    cardElement.appendChild(quantityElement);
+
+    drawContainer.appendChild(cardElement);
+
+    // Add Next Card button if there are more cards in the deck
+    if (tempDeck.length > 0) {
+        const nextCardButton = document.createElement('button');
+        nextCardButton.textContent = 'Next Card';
+        nextCardButton.onclick = drawRandomCardFromDeck;
+        drawContainer.appendChild(nextCardButton);
+    } else {
+        const noMoreCardsMessage = document.createElement('p');
+        noMoreCardsMessage.textContent = 'No more cards in the deck';
+        drawContainer.appendChild(noMoreCardsMessage);
+
+        const redrawButton = document.createElement('button');
+        redrawButton.textContent = 'Redraw';
+        redrawButton.onclick = () => {
+            initializeTempDeck();
+            drawRandomCardFromDeck();
+        };
+        drawContainer.appendChild(redrawButton);
+    }
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Restart';
+    restartButton.addEventListener('click', () => {
+        initializeTempDeck();
+        drawRandomCardFromDeck();
+    });
+    drawContainer.appendChild(restartButton);
+}
+
+
+
+function displayNoMoreCardsMessage() {
+    const drawContainer = document.getElementById('draw-container');
+    if (!drawContainer) {
+        console.error('draw-container element not found');
+        return;
+    }
+
+    drawContainer.innerHTML = ''; // Clear previous card
+
+    const noMoreCardsMessage = document.createElement('p');
+    noMoreCardsMessage.textContent = 'No more cards in the deck';
+    drawContainer.appendChild(noMoreCardsMessage);
+
+    const redrawButton = document.createElement('button');
+    redrawButton.textContent = 'Redraw';
+    redrawButton.onclick = () => {
+        initializeTempDeck();
+        drawRandomCardFromDeck();
+    };
+    drawContainer.appendChild(redrawButton);
+
+    // Add Restart button to shuffle and draw again
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Restart';
+    restartButton.addEventListener('click', () => {
+        initializeTempDeck();
+        drawRandomCardFromDeck();
+    });
+    drawContainer.appendChild(restartButton);
 }
 
 function displayCards() {
@@ -41,12 +177,8 @@ function displayCards() {
 
             const imgElement = document.createElement('img');
             imgElement.src = card['Image Link'];
+            imgElement.className = 'card-image'; // Add class for styling
             cardElement.appendChild(imgElement);
-
-            const plusIcon = document.createElement('i');
-            plusIcon.className = 'fas fa-plus plus-icon';
-            plusIcon.addEventListener('click', () => addToDeck(cardName, card));
-            cardElement.appendChild(plusIcon);
 
             const contentElement = document.createElement('div');
             contentElement.className = 'card-content';
@@ -73,46 +205,6 @@ function displayCards() {
 
     lazyLoadImages();
     updatePaginationButtons(filteredCards.length);
-}
-
-function addToDeck(cardName, card) {
-    if (deck.length >= 50) {
-        alert('Deck cannot have more than 50 cards.');
-        return;
-    }
-    const existingCard = deck.find(item => item.name === cardName);
-    if (existingCard) {
-        existingCard.count++;
-    } else {
-        deck.push({ name: cardName, ...card, count: 1 });
-    }
-    totalCardsInDeck++;
-    updateDeckUI();
-}
-
-function updateDeckUI() {
-    const deckCountElement = document.getElementById('deck-count');
-    deckCountElement.textContent = `${totalCardsInDeck} cards`;
-
-    const deckList = document.getElementById('deck-list');
-    deckList.innerHTML = '';
-    deck.forEach(card => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${card.name} (x${card.count})`;
-        deckList.appendChild(listItem);
-    });
-}
-
-function downloadDeck() {
-    const deckData = JSON.stringify(deck, null, 2);
-    const blob = new Blob([deckData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'deck.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
 }
 
 function filterCardsData() {
@@ -155,14 +247,35 @@ function showModal(imageSrc, cardName, rarity, kingdom) {
 
     modal.style.display = 'block';
 
+    // Clear previous 'Add to Deck' button
+    const existingButton = document.getElementById('add-to-deck-button');
+    if (existingButton) {
+        existingButton.remove();
+    }
+
+    // Add card to deck button
+    const addToDeckButton = document.createElement('button');
+    addToDeckButton.id = 'add-to-deck-button';
+    addToDeckButton.textContent = 'Add to Deck';
+    addToDeckButton.onclick = () => {
+        if (!userDeck[cardName]) {
+            userDeck[cardName] = { imageSrc, quantity: 1 };
+        } else if (userDeck[cardName].quantity < 2) {
+            userDeck[cardName].quantity += 1;
+        }
+        updateDeckCount();
+        modal.style.display = 'none';
+    };
+    modal.appendChild(addToDeckButton);
+
     // Close the modal when the user clicks on <span> (x)
     const span = document.getElementsByClassName('close')[0];
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = 'none';
     };
 
     // Close the modal when the user clicks anywhere outside of the modal
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
@@ -214,13 +327,45 @@ function updatePaginationButtons(totalCards) {
     }
 }
 
-function backToMainPage() {
-    window.location.href = 'index.html';
+function displayDeck() {
+    const deckList = document.getElementById('deck-list');
+    deckList.innerHTML = ''; // Clear previous deck
+
+    Object.entries(userDeck).forEach(([cardName, card]) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'deck-card';
+
+        const imgElement = document.createElement('img');
+        imgElement.src = card.imageSrc;
+        imgElement.className = 'deck-card-image'; // Add class for styling
+        listItem.appendChild(imgElement);
+
+        const titleElement = document.createElement('h3');
+        titleElement.className = 'deck-card-title';
+        titleElement.textContent = cardName;
+        listItem.appendChild(titleElement);
+
+        const quantityElement = document.createElement('p');
+        quantityElement.className = 'deck-card-quantity';
+        quantityElement.textContent = `Quantity: ${card.quantity}`;
+        listItem.appendChild(quantityElement);
+
+        deckList.appendChild(listItem);
+    });
+}
+
+function updateDeckCount() {
+    const deckCount = document.getElementById('deck-count');
+    const totalCards = Object.values(userDeck).reduce((sum, card) => sum + card.quantity, 0);
+    deckCount.textContent = `${totalCards} cards`;
+}
+
+function backToPreviousPage() {
+    window.history.back();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCardsData();
-    document.getElementById('download-deck').addEventListener('click', downloadDeck);
 
     // Add event listeners for filter buttons
     document.getElementById('filter-all').addEventListener('click', () => filterCards('All'));
@@ -229,7 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filter-kingdom3').addEventListener('click', () => filterCards('High Valomor'));
     document.getElementById('filter-kingdom4').addEventListener('click', () => filterCards('Ervenia'));
     document.getElementById('filter-kingdom5').addEventListener('click', () => filterCards('Farlands'));
-    document.getElementById('back').addEventListener('click', backToMainPage);
+    document.getElementById('back').addEventListener('click', backToPreviousPage);
+    document.getElementById('draw-button').addEventListener('click', drawRandomCardFromDeck);
 
     const deckButton = document.getElementById('deck-button');
     const deckModal = document.getElementById('deck-modal');
@@ -237,6 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     deckButton.addEventListener('click', () => {
         deckModal.style.display = 'block';
+        displayDeck(); // Display the deck when the modal is opened
     });
 
     closeModal.addEventListener('click', () => {
@@ -248,4 +395,5 @@ document.addEventListener('DOMContentLoaded', () => {
             deckModal.style.display = 'none';
         }
     });
+    initializeTempDeck();
 });
