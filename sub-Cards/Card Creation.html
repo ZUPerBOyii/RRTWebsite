@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/Cards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../assets/js/Creator.js"></script>
+    <link rel="icon" href="../assets/img/The_Drunken_Sails_Logo_NOBG.png" type="image/x-icon">
+    <title>Card Creator</title>
+</head>
+<body>
+    <h1>Card Creator</h1>
+
+
+    <div id="preview">
+        <div id="user-img"></div>
+    </div>
+
+    <h2>Kingdom</h2>
+    <select id="card-kingdom">
+        <option value="Ervenia">Ervenia</option>
+        <option value="R'Oth Vilgmeri">R'Oth Vilgmeri</option>
+        <option value="Gilded Juval">Gilded Juval</option>
+        <option value="High Valomor">High Valomor</option>
+        <option value="Farlands">Farlands</option>
+    </select>
+
+    <h2>Type</h2>
+    <select id="card-type">
+        <option value="unit">Unit</option>
+        <option value="spell">Spell</option>
+        <option value="Equipment">Equipment</option>
+        <option value="trap">Trap</option>
+    </select>
+
+
+    <h2>Name</h2>
+    <input type="text" id="card-name" placeholder="Enter card name">
+
+    <h2>Rarity</h2>
+    <select id="card-rarity">
+        <option value="common">Common</option>
+        <option value="rare">Uncommon</option>
+        <option value="epic">Rare</option>
+        <option value="legendary">Legendary</option>
+    </select>
+
+    <h2>Stats</h2>
+    <input type="number" id="card-attack" placeholder="Attack stat">
+    <input type="number" id="card-defense" placeholder="Defense stat">
+    <input type="number" id="card-mana" placeholder="Mana cost stat">
+
+    <h2>Description</h2>
+    <textarea id="card-description" placeholder="Enter card description"></textarea>
+
+    <h2>Image</h2>
+    <input type="file" id="card-image">
+
+    <h2>Finalize</h2>
+    <button id="create-card">Create Card</button>
+</body>
+</html>
