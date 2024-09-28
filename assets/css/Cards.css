@@ -20,7 +20,9 @@ body {
 }
 
 #preview {
-    position: relative;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     width: 485px;
     height: 720px;
     border: 1px solid #000;
