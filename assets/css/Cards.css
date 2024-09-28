@@ -1,7 +1,9 @@
-*{
+* {
     font-family: "Eagle Lake", serif;
 }
-h1, h2{
+
+h1,
+h2 {
     color: white;
 }
 
@@ -49,6 +51,17 @@ body {
     z-index: 2;
 }
 
+.card-name {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}
+
 
 #cards-container {
     display: flex;
@@ -59,29 +72,29 @@ body {
 
 /* General button styles */
 #filter-buttons button {
-    background-color: #4CAF50; 
-    border: none; 
-    color: white; 
-    padding: 15px 32px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px; 
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 12px; 
-    transition: background-color 0.3s, transform 0.3s; 
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 /* Hover effects */
 #filter-buttons button:hover {
-    background-color: #45a049; 
-    transform: scale(1.05); 
+    background-color: #45a049;
+    transform: scale(1.05);
 }
 
 /* Active button styles */
 #filter-buttons button.active {
-    background-color: #3e8e41; 
+    background-color: #3e8e41;
 }
 
 .card {
@@ -125,13 +138,15 @@ body {
     top: 0.8rem;
     right: 0.8rem;
     cursor: pointer;
-    font-size: 1.5rem;;
+    font-size: 1.5rem;
+    ;
     color: rgb(255, 0, 0);
 }
 
 #deck-container {
     display: none;
 }
+
 #deck-container h2 {
     margin: 0;
 }
@@ -140,19 +155,19 @@ body {
     margin: 5px 0;
 }
 
-#back{
-    background-color: #b01717; 
-    border: none; 
-    color: white; 
-    padding: 15px 32px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px; 
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 12px; 
-    transition: background-color 0.3s, transform 0.3s; 
+#back {
+    background-color: #b01717;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 
@@ -214,7 +229,8 @@ body {
 }
 
 .deck-card-image {
-    width: 3rem; /* Adjust the size as needed */
+    width: 3rem;
+    /* Adjust the size as needed */
     height: auto;
 }
 
@@ -222,7 +238,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120px; /* Adjust the size as needed */
+    width: 120px;
+    /* Adjust the size as needed */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -231,7 +248,8 @@ body {
 
 /* Drawn card styles */
 .drawn-card-image {
-    width: 100px; /* Adjust the size as needed */
+    width: 100px;
+    /* Adjust the size as needed */
     height: auto;
 }
 
@@ -240,7 +258,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120px; /* Adjust the size as needed */
+    width: 120px;
+    /* Adjust the size as needed */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -262,19 +281,22 @@ body {
 }
 
 #draw-container {
-    margin-top: 100px; /* Adjust as needed to ensure visibility */
+    margin-top: 100px;
+    /* Adjust as needed to ensure visibility */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    display: block; /* Ensure the container is displayed */
+    display: block;
+    /* Ensure the container is displayed */
 }
 
 
 
 /* Modal styles */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     z-index: 1000;
     left: 0;
