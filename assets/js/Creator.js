@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     document.getElementById('create-card').addEventListener('click', createCard);
-    document.getElementById('upload-image').addEventListener('change', uploadImage);
+    document.getElementById('card-image').addEventListener('change', uploadImage);
 }
 
 function createCard(){

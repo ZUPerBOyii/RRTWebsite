@@ -27,8 +27,7 @@ body {
     right: 20px;
     width: 485px;
     height: 720px;
-    border: 1px solid #000;
-    margin-top: 20px;
+    overflow: hidden;
 }
 
 #user-img {
@@ -39,6 +38,7 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
+    object-fit: cover;
     z-index: 1;
 }
 
