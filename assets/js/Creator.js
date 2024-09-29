@@ -13,7 +13,7 @@ function createCard(){
     const preview = document.getElementById('preview');
 
     // Clear previous card template
-    preview.innerHTML = '<div id="user-img"></div><p id="card-name-display"></p>';
+    preview.innerHTML = '<div id="user-img"></div><p id="card-name-display"></p><div id="atk" class="stat">0</div><div id="def" class="stat">0</div><div id="mana" class="stat">0</div>';
 
     // Create card template based on selected options
     const cardTemplate = document.createElement('img');

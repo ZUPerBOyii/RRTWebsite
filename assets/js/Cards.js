@@ -365,7 +365,7 @@ function backToPreviousPage() {
 }
 
 function toCardCreation() {
-    window.location.href = 'Card Creation.html';
+    window.location.href = 'sub-Cards/Card Creation.html';
 }
 
 
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filter-kingdom5').addEventListener('click', () => filterCards('Farlands'));
     document.getElementById('back').addEventListener('click', backToPreviousPage);
     document.getElementById('draw-button').addEventListener('click', drawRandomCardFromDeck);
-    document.querySelector('.create').addEventListener('click', toCardCreation);
+    document.querySelector('#create').addEventListener('click', toCardCreation);
 
     const deckButton = document.getElementById('deck-button');
     const deckModal = document.getElementById('deck-modal');

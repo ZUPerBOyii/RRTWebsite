@@ -62,6 +62,30 @@ body {
     z-index: 3;
 }
 
+.stat {
+    position: absolute;
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}
+
+#atk {
+    bottom: 40%; /* Adjust as needed */
+    left: 20%; /* Adjust as needed */
+}
+
+#def {
+    bottom: 40%; /* Adjust as needed */
+    right: 20%; /* Adjust as needed */
+}
+
+#mana {
+    bottom: 42.5%; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 
 #cards-container {
     display: flex;
