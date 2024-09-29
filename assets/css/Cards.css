@@ -32,8 +32,8 @@ body {
 
 #user-img {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 6%;
+    left: 5%;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -57,33 +57,42 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 24px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: black;
     z-index: 3;
 }
 
 .stat {
     position: absolute;
-    font-size: 24px;
+    font-size: 42px;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     z-index: 3;
 }
 
 #atk {
-    bottom: 40%; /* Adjust as needed */
-    left: 20%; /* Adjust as needed */
+    bottom: 32.5%; /* Adjust as needed */
+    left: 19%; /* Adjust as needed */
 }
 
 #def {
-    bottom: 40%; /* Adjust as needed */
-    right: 20%; /* Adjust as needed */
+    bottom: 32.5%; /* Adjust as needed */
+    right: 19%; /* Adjust as needed */
 }
 
 #mana {
-    bottom: 42.5%; /* Adjust as needed */
+    bottom: 35.5%; /* Adjust as needed */
     left: 50%;
     transform: translateX(-50%);
+}
+
+.card-description {
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: black; /* Adjust color as needed */
+    z-index: 3;
 }
 
 
